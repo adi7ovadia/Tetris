@@ -1,0 +1,12 @@
+drop database if exists tertisdb;
+create database tertisdb;
+use tertisdb;
+drop table if exists Games;
+create table Games(name varchar(25) not null, realScore integer not null,constraint pkGames primary key (name));
+
+INSERT INTO tertisdb.Games VALUES ( 'JOJO', 1);
+INSERT INTO tertisdb.Games VALUES ( 'MOMO',2);
+INSERT INTO tertisdb.Games VALUES ( 'KOKO', 3);
+INSERT INTO tertisdb.Games VALUES ( 'LOLO', 4);
+
+commit;
