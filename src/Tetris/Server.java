@@ -42,7 +42,7 @@ public class Server extends JFrame
 {
 	private ServerSocket serverSocket;
 	private Socket socket;
-	private int clientNo=0;
+	private static int clientNo=0;
 	private ArrayList<Player> arr=new ArrayList<>();
 	private static java.sql.Statement stmt=null;
 	private JButton btnNewGame=new JButton("New Game");
@@ -276,8 +276,16 @@ public class Server extends JFrame
 		return false;
 
 	}
+	
+	public static boolean checkNumberClientBiggerThenFive()
+	{
+		if(clientNo > 5)
+			return true;
+		return false;
 
-	private void writeGameDB(String playerName,int realScore)
+	}
+
+	public static boolean writeGameDB(String playerName,int realScore)
 	{
 		String sql=null;
 
@@ -286,9 +294,9 @@ public class Server extends JFrame
 			sql="INSERT INTO tertisdb.Games " +
 					"VALUES ('"+playerName+"', "+realScore+");";
 			stmt.executeUpdate(sql);
+			return true;
 
-
-		} catch (SQLException e) {}
+		} catch (SQLException e) {return false;}
 	}
 
 
